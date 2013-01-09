@@ -1,0 +1,17 @@
+#content{
+    text-align: center;
+}
+
+#congratsMessage{
+    display: none;
+    font-size: 25px;
+}
+
+video{
+    width: 640px;
+    height: 480px;
+}
+
+canvas{
+    display: none;
+}
