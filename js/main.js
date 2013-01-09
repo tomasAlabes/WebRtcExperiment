@@ -55,15 +55,9 @@ $(document).ready(function(){
 
             //if (video.width != 0) { //hack for normal chrome
 
-            var canvasContext = canvas.getContext('2d');
-            canvasContext.drawImage(video, 0, 0);
+                var canvasContext = canvas.getContext('2d');
+                canvasContext.drawImage(video, 0, 0);
 
-                /*if (darkyImage(canvas)) {
-                    stopWebCam();
-                    $(video).remove();
-                    clearInterval(intervalId);
-                    $("#congratsMessage").show();
-                }*/
             //}
 
 
@@ -79,6 +73,7 @@ $(document).ready(function(){
             if (darkyImage(ghostCanvas)) {
                 stopWebCam();
                 $(video).remove();
+                $("canvas").remove();
                 clearInterval(intervalId);
                 $("#congratsMessage").show();
             }
@@ -92,6 +87,7 @@ $(document).ready(function(){
 
             localMediaStream = stream;
 
+            $('#stop-button').attr({"disabled": false});
             startReading();
 
         }, onFailSoHard);
@@ -99,13 +95,13 @@ $(document).ready(function(){
         alert('getUserMedia() is not supported in your browser');
     }
 
-video.addEventListener('click', function(){
-    snapshot($('#photoCanvas')[0]);
-}, false);
+    video.addEventListener('click', function () {
+        snapshot($('#photoCanvas')[0]);
+    }, false);
 
-    /*$('#stop-button').click(function () {
-     stopWebCam();
-     });*/
+    $('#stop-button').click(function () {
+        stopWebCam();
+    });
 
 
 });

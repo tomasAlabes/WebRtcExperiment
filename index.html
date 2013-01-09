@@ -14,6 +14,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/mine.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
@@ -23,8 +24,10 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div id="content">
-            <h1>Hello to my WebCam example, cover the camera to finish</h1>
+        <div class="container">
+            <h1>Hello to my WebCam example!</h1>
+            <h3>cover the camera to finish</h3>
+            <button id="stop-button" disabled>Stop manually</button>
 
             <div id="webcam">
                 <video width="5" height="5" autoplay></video>
@@ -32,7 +35,7 @@
                 <canvas id="photoCanvas" width="640" height="480"></canvas>
                 <p id="congratsMessage">Congratulations!! Demo completed!!!</p>
             </div>
-            <!--<button id="stop-button">Stop</button>-->
+
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -40,12 +43,5 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
     </body>
 </html>

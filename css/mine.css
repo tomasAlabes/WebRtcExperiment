@@ -1,10 +1,18 @@
-#content{
+body{
+    background-color: #87ceeb;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.container{
     text-align: center;
+    background-color: #fffaf0;
 }
 
 #congratsMessage{
     display: none;
     font-size: 25px;
+    margin-top: 30px;
 }
 
 video{
