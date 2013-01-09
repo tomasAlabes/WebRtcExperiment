@@ -50,24 +50,39 @@ $(document).ready(function(){
         localMediaStream.stop();
     }
 
-    function snapshot(intervalId) {
+    function snapshot(canvas) {
         if (localMediaStream) {
 
             //if (video.width != 0) { //hack for normal chrome
-            ctx.drawImage(video, 0, 0);
 
-                if (darkyImage(canvas)) {
+            var canvasContext = canvas.getContext('2d');
+            canvasContext.drawImage(video, 0, 0);
+
+                /*if (darkyImage(canvas)) {
                     stopWebCam();
                     $(video).remove();
                     clearInterval(intervalId);
                     $("#congratsMessage").show();
-                }
+                }*/
             //}
 
 
             // "image/webp" works in Chrome 18. In other browsers, this will fall back to image/png.
             //document.querySelector('img').src = canvas.toDataURL('image/webp');
         }
+    }
+
+    function startReading(){
+        var ghostCanvas = $('#ghostCanvas')[0];
+        var intervalId = setInterval(function(){
+            snapshot(ghostCanvas);
+            if (darkyImage(ghostCanvas)) {
+                stopWebCam();
+                $(video).remove();
+                clearInterval(intervalId);
+                $("#congratsMessage").show();
+            }
+        }, 1000);
     }
 
     if (navigator.getUserMedia) {
@@ -77,16 +92,16 @@ $(document).ready(function(){
 
             localMediaStream = stream;
 
-            var intervalId = setInterval(function(){
-                snapshot(intervalId)
-            }, 1000);
+            startReading();
 
         }, onFailSoHard);
     } else {
         alert('getUserMedia() is not supported in your browser');
     }
 
-//video.addEventListener('click', snapshot, false);
+video.addEventListener('click', function(){
+    snapshot($('#photoCanvas')[0]);
+}, false);
 
     /*$('#stop-button').click(function () {
      stopWebCam();

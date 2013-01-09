@@ -12,6 +12,10 @@ video{
     height: 480px;
 }
 
-canvas{
+#photoCanvas{
+    display: inline;
+}
+
+#ghostCanvas{
     display: none;
 }
