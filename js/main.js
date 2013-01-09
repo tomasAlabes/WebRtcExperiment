@@ -18,8 +18,31 @@ $(document).ready(function(){
 
 
     function darkyPixel(rgba){
-        console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
-        return (rgba[0] < 80 && rgba[1] < 80 && rgba[2] < 80);
+        //console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
+        var colorLimit = 120;
+        return (rgba[0] < colorLimit && rgba[1] < colorLimit && rgba[2] < colorLimit);
+    }
+
+    function darkyImage(canvas){
+        var canvasContext = canvas.getContext('2d'),
+            i, j,
+            x, y,
+            image, data;
+
+        for(i = 1; i<3; i++){
+            for(j = 1; j<3; j++){
+                x = canvas.width/ j - 1;
+                y = canvas.height/i - 1;
+                //console.log("x: "+ x + ', y: '+ y);
+                image = canvasContext.getImageData(x, y, 1, 1);
+                data = image.data;
+                //console.log("analyzing point: " + data[0] + ' '+ data[1] + ' '+ data[2]);
+                if(!darkyPixel(data)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     function stopWebCam(){
@@ -27,17 +50,16 @@ $(document).ready(function(){
         localMediaStream.stop();
     }
 
-    function snapshot() {
+    function snapshot(intervalId) {
         if (localMediaStream) {
 
-            //if (video.width != 0) { //hack
-                ctx.drawImage(video, 0, 0);
-                var image = ctx.getImageData(canvas.width / 2, canvas.height / 2, 1, 1);
+            //if (video.width != 0) { //hack for normal chrome
+            ctx.drawImage(video, 0, 0);
 
-                if (darkyPixel(image.data)) {
+                if (darkyImage(canvas)) {
                     stopWebCam();
                     $(video).remove();
-                    clearInterval(1);
+                    clearInterval(intervalId);
                     $("#congratsMessage").show();
                 }
             //}
@@ -55,8 +77,9 @@ $(document).ready(function(){
 
             localMediaStream = stream;
 
-            setInterval(snapshot, 500);
-
+            var intervalId = setInterval(function(){
+                snapshot(intervalId)
+            }, 1000);
 
         }, onFailSoHard);
     } else {
