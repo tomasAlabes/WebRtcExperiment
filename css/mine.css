@@ -1,12 +1,17 @@
 body{
-    background-color: #87ceeb;
-    padding-top: 60px;
     padding-bottom: 40px;
+    background-image: url(../img/wooden-planks.jpg);
+    background-repeat: repeat;
+    color: white;
 }
 
 .container{
     text-align: center;
-    background-color: #fffaf0;
+}
+
+#stop-button{
+    display: none;
+    margin: 30px 0 30px 0;
 }
 
 #congratsMessage{
@@ -16,8 +21,8 @@ body{
 }
 
 video{
-    width: 640px;
-    height: 480px;
+    width: 480px;
+    height: 320px;
 }
 
 #photoCanvas{

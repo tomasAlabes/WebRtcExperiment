@@ -19,7 +19,7 @@ $(document).ready(function(){
 
     function darkyPixel(rgba){
         //console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
-        var colorLimit = 120;
+        var colorLimit = 40;
         return (rgba[0] < colorLimit && rgba[1] < colorLimit && rgba[2] < colorLimit);
     }
 
@@ -52,17 +52,12 @@ $(document).ready(function(){
 
     function snapshot(canvas) {
         if (localMediaStream) {
-
             //if (video.width != 0) { //hack for normal chrome
 
                 var canvasContext = canvas.getContext('2d');
-                canvasContext.drawImage(video, 0, 0);
+                canvasContext.drawImage(video, 0, 0, 320, 240);
 
             //}
-
-
-            // "image/webp" works in Chrome 18. In other browsers, this will fall back to image/png.
-            //document.querySelector('img').src = canvas.toDataURL('image/webp');
         }
     }
 
@@ -72,10 +67,15 @@ $(document).ready(function(){
             snapshot(ghostCanvas);
             if (darkyImage(ghostCanvas)) {
                 stopWebCam();
-                $(video).remove();
-                $("canvas").remove();
+                $(video).fadeOut(1000);
+                $("ghostCanvas").hide();
+                var $photoCanvas = $("#photoCanvas");
+                if (!$photoCanvas.data("photoTaken")) {
+                    $photoCanvas.hide();
+                }
                 clearInterval(intervalId);
-                $("#congratsMessage").show();
+                $("#congratsMessage").fadeIn(1000);
+                $('#stop-button').fadeOut(500);
             }
         }, 1000);
     }
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
             localMediaStream = stream;
 
-            $('#stop-button').attr({"disabled": false});
+            $('#stop-button').fadeIn(500);
             startReading();
 
         }, onFailSoHard);
@@ -96,11 +96,22 @@ $(document).ready(function(){
     }
 
     video.addEventListener('click', function () {
-        snapshot($('#photoCanvas')[0]);
+        var $photoCanvas = $('#photoCanvas');
+        snapshot($photoCanvas[0]);
+        $photoCanvas.data("photoTaken", true);
     }, false);
 
     $('#stop-button').click(function () {
         stopWebCam();
+        $(video).fadeOut(1000);
+        $("#ghostCanvas").hide();
+        var $photoCanvas = $("#photoCanvas");
+        if (!$photoCanvas.data("photoTaken")) {
+            $photoCanvas.hide();
+        }
+        $('#stop-button').fadeOut(1000);
+        clearInterval(1);
+        $("#congratsMessage").text("Manually stopped").fadeIn(500);
     });
 
 
