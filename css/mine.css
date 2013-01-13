@@ -1,7 +1,6 @@
 body{
     padding-bottom: 40px;
-    background-image: url(../img/wooden-planks.jpg);
-    background-repeat: repeat;
+    background: url(../img/wooden-planks.jpg) repeat;
     color: white;
 }
 
@@ -31,4 +30,13 @@ video{
 
 #ghostCanvas{
     display: none;
+}
+
+#shadow {
+    background-image: url("../img/shade1x1.png");
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }

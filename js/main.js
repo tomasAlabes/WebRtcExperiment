@@ -18,9 +18,31 @@ $(document).ready(function(){
 
 
     function darkyPixel(rgba){
-        //console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
-        var colorLimit = 40;
-        return (rgba[0] < colorLimit && rgba[1] < colorLimit && rgba[2] < colorLimit);
+        console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
+
+        var offColor = 20,
+            darkColor = 45,
+            greyColor = 70,
+            lightGreyColor = 100;
+
+        var redOffset = 25;
+        if((rgba[0] < offColor + redOffset && rgba[1] < offColor && rgba[2] < offColor)){
+            //console.log('offColor');
+            $("#shadow").css('opacity', 0);
+            return true;
+        }else if((rgba[0] < darkColor + redOffset && rgba[1] < darkColor && rgba[2] < darkColor)){
+            //console.log('darkColor');
+            $("#shadow").css('opacity', 0.9);
+        }else if((rgba[0] < greyColor + redOffset && rgba[1] < greyColor && rgba[2] < greyColor)){
+            console.log('greyColor');
+            $("#shadow").css('opacity', 0.4);
+        }else if((rgba[0] < lightGreyColor + redOffset && rgba[1] < lightGreyColor && rgba[2] < lightGreyColor)){
+            console.log('lightGreyColor');
+            $("#shadow").css('opacity', 0.2);
+        }else{
+            $("#shadow").css('opacity', 0);
+        }
+        return false;
     }
 
     function darkyImage(canvas){
@@ -110,9 +132,12 @@ $(document).ready(function(){
             $photoCanvas.hide();
         }
         $('#stop-button').fadeOut(1000);
+        //ugly hack, correct it
         clearInterval(1);
+        clearInterval(0);
+        clearInterval(2);
         $("#congratsMessage").text("Manually stopped").fadeIn(500);
     });
 
-
+    $("#shadow").css("height", $(document).height()).css('opacity', 0);
 });
