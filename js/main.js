@@ -134,7 +134,7 @@ $(document).ready(function(){
         $("#congratsMessage").text("Manually stopped").fadeIn(500);
     });
 
-    //$("#shadow").css("height", $(document).height()).css('opacity', 0);
+    $("#shadow").css("height", $(document).height()).css('opacity', 0);
     
     var idx = 0;
     var filters = ['grayscale', 'sepia', 'blur', ''];
