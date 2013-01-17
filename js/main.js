@@ -12,8 +12,6 @@ $(document).ready(function(){
     };
 
     var video = $('video')[0];
-    var canvas = $('canvas')[0];
-    var ctx = canvas.getContext('2d');
     var localMediaStream = null;
 
 
@@ -140,4 +138,20 @@ $(document).ready(function(){
     });
 
     $("#shadow").css("height", $(document).height()).css('opacity', 0);
+    
+    var idx = 0;
+    var filters = ['grayscale', 'sepia', 'blur', 'brightness', 'contrast', 'hue-rotate',
+                   'hue-rotate2', 'hue-rotate3', 'saturate', 'invert', ''];
+    
+    function changeFilter(e) {
+      var el = e.target;
+      el.className = '';
+      var effect = filters[idx++ % filters.length]; // loop through filters.
+      if (effect) {
+        el.classList.add(effect);
+      }
+    }
+    
+    document.querySelector('video').addEventListener('click', changeFilter, false);
+    
 });
