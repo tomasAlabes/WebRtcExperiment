@@ -12,11 +12,12 @@ $(document).ready(function(){
     };
 
     var video = $('video')[0];
+    var canvas = $('canvas')[0];
     var localMediaStream = null;
 
 
     function darkyPixel(rgba){
-        console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
+        //console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
 
         var offColor = 20,
             darkColor = 45,
@@ -32,10 +33,10 @@ $(document).ready(function(){
             //console.log('darkColor');
             $("#shadow").css('opacity', 0.9);
         }else if((rgba[0] < greyColor + redOffset && rgba[1] < greyColor && rgba[2] < greyColor)){
-            console.log('greyColor');
+            //console.log('greyColor');
             $("#shadow").css('opacity', 0.4);
         }else if((rgba[0] < lightGreyColor + redOffset && rgba[1] < lightGreyColor && rgba[2] < lightGreyColor)){
-            console.log('lightGreyColor');
+            //console.log('lightGreyColor');
             $("#shadow").css('opacity', 0.2);
         }else{
             $("#shadow").css('opacity', 0);
@@ -72,12 +73,8 @@ $(document).ready(function(){
 
     function snapshot(canvas) {
         if (localMediaStream) {
-            //if (video.width != 0) { //hack for normal chrome
-
-                var canvasContext = canvas.getContext('2d');
-                canvasContext.drawImage(video, 0, 0, 320, 240);
-
-            //}
+            var canvasContext = canvas.getContext('2d');
+            canvasContext.drawImage(video, 0, 0, 320, 240);
         }
     }
 
@@ -137,12 +134,13 @@ $(document).ready(function(){
         $("#congratsMessage").text("Manually stopped").fadeIn(500);
     });
 
-    $("#shadow").css("height", $(document).height()).css('opacity', 0);
+    //$("#shadow").css("height", $(document).height()).css('opacity', 0);
     
     var idx = 0;
-    var filters = ['grayscale', 'sepia', 'blur', 'brightness', 'contrast', 'hue-rotate',
-                   'hue-rotate2', 'hue-rotate3', 'saturate', 'invert', ''];
-    
+    var filters = ['grayscale', 'sepia', 'blur', ''];
+//    var filters = ['grayscale', 'sepia', 'blur', 'brightness', 'contrast', 'hue-rotate',
+//                  'hue-rotate2', 'hue-rotate3', 'saturate', 'invert', ''];
+
     function changeFilter(e) {
       var el = e.target;
       el.className = '';
@@ -152,6 +150,6 @@ $(document).ready(function(){
       }
     }
     
-    document.querySelector('video').addEventListener('click', changeFilter, false);
+    $('#photoCanvas').on('click', changeFilter);
     
 });
