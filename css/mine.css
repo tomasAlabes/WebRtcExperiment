@@ -22,6 +22,8 @@ body{
 video{
     width: 480px;
     height: 320px;
+    position: relative;
+    z-index: 101;
 }
 
 .grayscale {
@@ -48,6 +50,8 @@ video{
 
 #photoCanvas{
     display: inline;
+    position: relative;
+    z-index: 101;
 }
 
 #ghostCanvas{
