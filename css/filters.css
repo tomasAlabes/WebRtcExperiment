@@ -1,0 +1,63 @@
+.grayscale {
+    -webkit-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -o-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.sepia {
+    -webkit-filter: sepia(1);
+    -ms-filter: sepia(1);
+    -moz-filter: sepia(1);
+    -o-filter: sepia(1);
+    filter: sepia(1);
+}
+
+.blur {
+    -webkit-filter: blur(1);
+    -ms-filter: blur(1);
+    -moz-filter: blur(1);
+    -o-filter: blur(1);
+    filter: blur(1);
+}
+
+.opacity {
+    -webkit-filter: opacity(0.5);
+    -ms-filter: opacity(0.5);
+    -moz-filter: opacity(0.5);
+    -o-filter: opacity(0.5);
+    filter: opacity(0.5);
+}
+
+.brightness {
+    -webkit-filter: brightness(0.5);
+    -ms-filter: brightness(0.5);
+    -moz-filter: brightness(0.5);
+    -o-filter: brightness(0.5);
+    filter: brightness(0.5);
+}
+
+.contrast {
+    -webkit-filter: contrast(0.5);
+    -ms-filter: contrast(0.5);
+    -moz-filter: contrast(0.5);
+    -o-filter: contrast(0.5);
+    filter: contrast(0.5);
+}
+
+.invert {
+    -webkit-filter: invert(100%);
+    -ms-filter: invert(100%);
+    -moz-filter: invert(100%);
+    -o-filter: invert(100%);
+    filter: inver(100%);
+}
+
+.saturate {
+    -webkit-filter: saturate(300%);
+    -ms-filter: saturate(300%);
+    -moz-filter: saturate(300%);
+    -o-filter: saturate(300%);
+    filter: saturate(300%);
+}
