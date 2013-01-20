@@ -1,7 +1,20 @@
+@font-face {
+    font-family: "Roughage Serif";
+    src: url("fonts/roughage.eot?") format("eot"), url("fonts/roughage.woff") format("woff"), url("fonts/roughage.ttf") format("truetype"), url("fonts/roughage.svg#") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
     padding-bottom: 40px;
     background: url(../img/wooden-planks.jpg) repeat;
     color: white;
+}
+
+h1{
+    font-family: Roughage Serif, sans-serif;
+    font-size: 50px;
+    color: #deb887;
 }
 
 .container{
@@ -11,6 +24,8 @@ body{
 #stop-button{
     display: none;
     margin: 30px 0 30px 0;
+    position: relative;
+    z-index: 101;
 }
 
 #congratsMessage{
@@ -20,32 +35,10 @@ body{
 }
 
 video{
-    width: 480px;
     height: 320px;
+    width: 480px;
     position: relative;
     z-index: 101;
-}
-
-.grayscale {
-  -webkit-filter: grayscale(1);
-  -ms-filter: grayscale(1);
-  -moz-filter: grayscale(1);
-  -o-filter: grayscale(1);
-  filter: grayscale(1);
-}
-.sepia {
-  -webkit-filter: sepia(1);
-  -ms-filter: sepia(1);
-  -moz-filter: sepia(1);
-  -o-filter: sepia(1);
-  filter: sepia(1);
-}
-.blur {
-   -webkit-filter: blur(1);
-  -ms-filter: blur(1);
-  -moz-filter: blur(1);
-  -o-filter: blur(1);
-  filter: blur(1);
 }
 
 #photoCanvas{
@@ -54,8 +47,9 @@ video{
     z-index: 101;
 }
 
-#ghostCanvas{
+#cameraInstructions, .photoInstructions, #ghostCanvas {
     display: none;
+
 }
 
 #shadow {
