@@ -17,7 +17,20 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
     function stopWebCam(){
         video.pause();
         localMediaStream.stop();
-        $(video).fadeOut(1000);
+        $('video, #stop-button, #cameraInstructions').fadeOut(1000);
+        $("#ghostCanvas").hide();
+        var $photoCanvas = $("#photoCanvas");
+        if (!$photoCanvas.data("photoTaken")) {
+            $photoCanvas.hide();
+        }
+        $("#shadow").css('opacity', 0);
+        $('#webcam').removeClass('container_2');
+        $('.grid_1').removeClass('grid_1');
+        $("#congratsMessage").text("Manually stopped").fadeIn(500);
+        //ugly hack, correct it
+        clearInterval(0);
+        clearInterval(1);
+        clearInterval(2);
     }
 
     function snapshot(canvas) {
@@ -47,7 +60,6 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
     }
 
     if (navigator.getUserMedia) {
-
         navigator.getUserMedia({video: true}, function (stream) {
             video.src = window.URL.createObjectURL(stream);
 
@@ -70,22 +82,6 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
         }
     }, false);
 
-    $('#stop-button').click(function () {
-        stopWebCam();
-        $("#ghostCanvas").hide();
-        var $photoCanvas = $("#photoCanvas");
-        if (!$photoCanvas.data("photoTaken")) {
-            $photoCanvas.hide();
-        }
-        $('#stop-button, #cameraInstructions').fadeOut(1000);
-        $("#shadow").css('opacity', 0);
-        //ugly hack, correct it
-        clearInterval(0);
-        clearInterval(1);
-        clearInterval(2);
-        $("#congratsMessage").text("Manually stopped").fadeIn(500);
-    });
-
-    $("#shadow").css("height", $(document).height()).css('opacity', 0);
+    $('#stop-button').click(stopWebCam);
 
 });
