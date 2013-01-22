@@ -1,7 +1,8 @@
 define({
     darkyPixel: function (rgba) {
         //console.log(rgba[0]+' '+rgba[1]+' '+rgba[2]);
-
+        var $shadow = $("#shadow");
+        $shadow.css("height", $(document).height());
         var offColor = 20,
             darkColor = 45,
             greyColor = 70,
@@ -10,19 +11,19 @@ define({
         var redOffset = 25;
         if ((rgba[0] < offColor + redOffset && rgba[1] < offColor && rgba[2] < offColor)) {
             //console.log('offColor');
-            $("#shadow").css('opacity', 0);
+            $shadow.css('opacity', 0);
             return true;
         } else if ((rgba[0] < darkColor + redOffset && rgba[1] < darkColor && rgba[2] < darkColor)) {
             //console.log('darkColor');
-            $("#shadow").css('opacity', 0.9);
+            $shadow.css('opacity', 0.9);
         } else if ((rgba[0] < greyColor + redOffset && rgba[1] < greyColor && rgba[2] < greyColor)) {
             //console.log('greyColor');
-            $("#shadow").css('opacity', 0.4);
+            $shadow.css('opacity', 0.4);
         } else if ((rgba[0] < lightGreyColor + redOffset && rgba[1] < lightGreyColor && rgba[2] < lightGreyColor)) {
             //console.log('lightGreyColor');
-            $("#shadow").css('opacity', 0.2);
+            $shadow.css('opacity', 0.2);
         } else {
-            $("#shadow").css('opacity', 0);
+            $shadow.css('opacity', 0);
         }
         return false;
     },
