@@ -47,9 +47,18 @@ video{
     z-index: 101;
 }
 
-#cameraInstructions, .photoInstructions, #ghostCanvas {
+video, #cameraInstructions, #sorryMsg, .photoInstructions, #ghostCanvas {
     display: none;
+}
 
+#sorryMsg{
+    font-size: 30px;
+    font-style: italic;
+}
+
+#instructions{
+    font-size: 25px;
+    font-style: italic;
 }
 
 #shadow {

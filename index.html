@@ -32,16 +32,15 @@
         <!-- CONTAINER -->
         <div class="container">
             <h1>Hello to my WebRTC experiment!</h1>
-            <p>Cover your Webcam to turn it off!! <br>
-            This experiment only works in the latest Chrome.</p>
+            <p id="instructions">Cover your Webcam to turn it off!!</p>
             <button id="stop-button">Stop manually</button>
 
             <div id="webcam" class="container_2">
-                <div class="grid_1">
+                <div id="cameraSide">
                     <video autoplay></video>
                     <p id="cameraInstructions">Click to take a snapshot.</p>
                 </div>
-                <div class="grid_1">
+                <div id="photoSide">
                     <canvas id="photoCanvas" width="440" height="320"></canvas>
                     <p class="photoInstructions">Click to change filters on the image</p>
 
@@ -49,6 +48,10 @@
                     <canvas id="ghostCanvas" width="440" height="320"></canvas>
                     <p id="congratsMessage">Demo completed!!!</p>
                 </div>
+            </div>
+            <div id="sorryMsg">
+                <p>We are sorry you didn't give us permission to access your camera...</p>
+                <img src="img/sad.png" alt="sad...">
             </div>
 
         </div>
