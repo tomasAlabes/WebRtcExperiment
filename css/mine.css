@@ -47,7 +47,7 @@ video{
     z-index: 101;
 }
 
-video, #cameraInstructions, #sorryMsg, .photoInstructions, #ghostCanvas {
+video, #cameraInstructions, #sorryMsg, .photoInstructions, #ghostCanvas, #instructions {
     display: none;
 }
 

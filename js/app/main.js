@@ -74,7 +74,7 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
             localMediaStream = stream;
 
             startReading();
-            $('video, #photoCanvas, #stop-button, #cameraInstructions').fadeIn(500);
+            $('video, #photoCanvas, #stop-button, #cameraInstructions, #instructions').fadeIn(500);
 
         }, onFailSoHard);
     } else {
