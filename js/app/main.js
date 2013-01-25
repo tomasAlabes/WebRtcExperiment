@@ -79,7 +79,7 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
         }, onFailSoHard);
     } else {
         $('#sorryMsg').
-            text('getUserMedia() is not supported in your browser. See here where you can see this demo: <a href="http://caniuse.com/#feat=stream">here.</a>').
+            text('getUserMedia() is not supported in your browser. See here where you can see this demo: &lt;a href=&quot;http://caniuse.com/#feat=stream&quot;&gt;here.&lt;/a&gt;').
             fadeIn(500);
     }
 
