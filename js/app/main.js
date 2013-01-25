@@ -74,12 +74,12 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
             localMediaStream = stream;
 
             startReading();
-            $('video, #photoCanvas, #stop-button, #cameraInstructions').fadeIn(500);
+            $('video, #photoCanvas, #stop-button, #cameraInstructions, #instructions').fadeIn(500);
 
         }, onFailSoHard);
     } else {
         $('#sorryMsg').
-            text('getUserMedia() is not supported in your browser. See here where you can see this demo: <a href="http://caniuse.com/#feat=stream">here.</a>').
+            html('getUserMedia() is not supported in your browser. See here where you can see this demo: <a href="http://caniuse.com/#feat=stream">here.</a>').
             fadeIn(500);
     }
 
