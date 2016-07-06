@@ -3,7 +3,7 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
 
     window.URL = window.URL || window.webkitURL;
 
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
     var intervalForReading;
@@ -34,7 +34,7 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
         clearUI();
         clearInterval(intervalForReading);
         video.pause();
-        localMediaStream.stop();
+        localMediaStream.getTracks()[0].stop();
     }
 
     function snapshot($canvas) {
@@ -50,11 +50,11 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
     function startReading(){
         var $ghostCanvas = $('#ghostCanvas');
         intervalForReading = setInterval(function(){
-            ghostSnapshot($ghostCanvas);
+            snapshot($ghostCanvas);
             if (imageUtils.darkyImage($ghostCanvas[0])) {
                 stopWebCam();
                 $(video).fadeOut(1000);
-                $("$ghostCanvas").hide();
+                $("#ghostCanvas").hide();
                 var $photoCanvas = $("#photoCanvas");
                 if (!$photoCanvas.data("photoTaken")) {
                     $photoCanvas.hide();
@@ -66,8 +66,8 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
         }, 1000);
     }
 
-    if (navigator.getUserMedia) {
-        navigator.getUserMedia({video: true}, function (stream) {
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
             $('video').show();
             video.src = window.URL.createObjectURL(stream);
 
@@ -76,7 +76,7 @@ define(["jquery", "app/imageUtils"], function($, imageUtils){
             startReading();
             $('video, #photoCanvas, #stop-button, #cameraInstructions, #instructions').fadeIn(500);
 
-        }, onFailSoHard);
+        }).catch(onFailSoHard);
     } else {
         $('#sorryMsg').
             html('getUserMedia() is not supported in your browser. See here where you can see this demo: <a href="http://caniuse.com/#feat=stream">here.</a>').
